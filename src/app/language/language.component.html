@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="row py-3">
+        <div class="col-10">
+            <select class="form-select selectLanguage" aria-label="Default select example" #selectedLang (change)="switchLang(selectedLang.value)">
+                <option *ngFor="let language of translate.getLangs()" 
+                    [value]="language"
+                    [selected]="language === translate.currentLang">
+                    {{language | translate }}
+                </option>
+              </select>
+        </div>
+        <div class="col-2 position-relative">
+            <button type="button" class="btn btn-secondary position-absolute top-0 end-0">{{'modal_close' | translate }}</button>
+        </div>
+        <div class="col-12 py-4">
+            <h3 class="text-success">{{'french' | translate }}</h3>
+        </div>
+        <div class="col-9">
+            <lang-form></lang-form>
+        </div>
+        <div class="col-3 containerCardNumberLang">
+            <div class="card text-white bg-dark mb-3 h-75 w-100 contentCardNumberLang">
+                <div class="card-body">
+                    <h5 class="card-title">{{'number_of_languages' | translate }}</h5>
+                    <p class="card-text text-center py-4">{{(languages | async)?.length}} {{modalObservalble}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <h3 class="py-3">{{'list_of_languages' | translate }}</h3>
+            <table class="table table-striped">
+                <thead>
+                    <th>{{'language' | translate }}</th>
+                    <th>{{'spoken_level' | translate }}</th>
+                    <th>{{'written_level' | translate }}</th>
+                    <th>{{'comprehension_level' | translate }}</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    <tr lang-single *ngFor="let language of languages | async" [languageItem]="language" (childEvent)="modalObservalble=$event">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{'detail' | translate }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <span class="fw-bold">{{'french' | translate }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

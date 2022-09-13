@@ -1,0 +1,33 @@
+<!-- <tr> -->
+<td>{{languageItem.language | translate}}</td>
+<td>{{languageItem.spoken_level | translate}}</td>
+<td>{{languageItem.written_level | translate}}</td>
+<td>{{languageItem.comprehension_level | translate}}</td>
+<td>
+    <button type="button" title="Modifier" class="btn btn-secondary m-1 btn-sm"><i class="fa fa-edit"></i></button>
+    <button type="button" title="Detail" class="btn btn-info m-1 btn-sm" (click)="openModal(mymodal, languageItem)"><i class="fa fa-info-circle fs-6"></i></button>
+    <button type="button" title="Supprimer" class="btn btn-danger m-1 btn-sm" (click)="deleteLanguage(languageItem)"><i class="fa fa-trash"></i></button>
+</td>
+<!-- </tr> -->
+
+<ng-template #mymodal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title" id="modal-basic-title">{{'detail' | translate}}</h5>
+        <button type="button" class="close" aria-label="Close" (click)="closeModal(modal)">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">{{languageChoose | translate}}</div>
+                <div class="col-6 fw-bold">{{'spoken_level' | translate}}</div>
+                <div class="col-6">{{levelSpoken | translate}}</div>
+                <div class="col-6 fw-bold">{{'written_level' | translate}}</div>
+                <div class="col-6">{{writtenLevel | translate}}</div>
+                <div class="col-6 fw-bold">{{'comprehension_level' | translate}}</div>
+                <div class="col-6">{{comprehensionLevel | translate}}</div>
+            </div>
+        </div>
+    </div>
+</ng-template>

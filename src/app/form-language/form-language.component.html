@@ -1,0 +1,77 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h4>{{'add_a_language' | translate }}</h4>
+        </div>
+        <form class="col-12 px-0" [formGroup]="formLanguage" (ngSubmit)="onSubmit()">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="langue" class="form-label">{{'choose_language' | translate }}</label>
+                            <select required formControlName="language" class="form-select" id="langue" aria-label="Default select example">
+                                <option disabled selected>{{'select_a_language' | translate }}</option>
+                                <option value="fr">{{'fr' | translate }}</option>
+                                <option value="en">{{'en' | translate }}</option>
+                                <option value="nl">{{'nl' | translate }}</option>
+                            </select>
+                            <div class="form-control-feedback" *ngIf="submitted && f['language'].errors">
+                                <p *ngIf="f['language'].errors['required']" class="text-danger">{{'required_field' | translate}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="level_read" class="form-label">{{'spoken_level' | translate }}</label>
+                            <select required formControlName="spoken_level" class="form-select" id="level_read" aria-label="Default select example">
+                                <option selected>{{'select_a_level' | translate }}</option>
+                                <option value="current">{{'current' | translate }}</option>
+                                <option value="pre_intermediate">{{'pre_intermediate' | translate }}</option>
+                                <option value="intermediate">{{'intermediate' | translate }}</option>
+                                <option value="advanced">{{'advanced' | translate }}</option>
+                            </select>
+                            <div class="form-control-feedback" *ngIf="submitted && f['spoken_level'].errors">
+                                <p *ngIf="f['spoken_level'].errors['required']" class="text-danger">{{'required_field' | translate}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="level_write" class="form-label">{{'written_level' | translate }}</label>
+                            <select required formControlName="written_level" class="form-select" id="level_write" aria-label="Default select example">
+                                <option selected>{{'select_a_level' | translate }}</option>
+                                <option value="current">{{'current' | translate }}</option>
+                                <option value="pre_intermediate">{{'pre_intermediate' | translate }}</option>
+                                <option value="intermediate">{{'intermediate' | translate }}</option>
+                                <option value="advanced">{{'advanced' | translate }}</option>
+                            </select>
+                            <div class="form-control-feedback" *ngIf="submitted && f['written_level'].errors">
+                                <p *ngIf="f['written_level'].errors['required']" class="text-danger">{{'required_field' | translate}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="level_understanding" class="form-label">{{'comprehension_level' | translate }}</label>
+                            <select required formControlName="comprehension_level" class="form-select" id="level_understanding" aria-label="Default select example">
+                                <option selected>{{'select_a_level' | translate }}</option>
+                                <option value="elementary">{{'elementary' | translate }}</option>
+                                <option value="pre_intermediate">{{'pre_intermediate' | translate }}</option>
+                                <option value="intermediate">{{'intermediate' | translate }}</option>
+                                <option value="advanced">{{'advanced' | translate }}</option>
+                            </select>
+                            <div class="form-control-feedback" *ngIf="submitted && f['comprehension_level'].errors">
+                                <p *ngIf="f['comprehension_level'].errors['required']" class="text-danger">{{'required_field' | translate}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary">{{'save' | translate }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
