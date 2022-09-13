@@ -10,7 +10,7 @@
               </select>
         </div>
         <div class="col-2 position-relative">
-            <button type="button" class="btn btn-secondary position-absolute top-0 end-0">{{(modalObservalble | langColor) | translate }}</button>
+            <button type="button" class="btn {{modalObservalble | langColor}} position-absolute top-0 end-0">{{(modalObservalble == 0 ? 'modal_close' : 'modal_opened') | translate }}</button>
         </div>
         <div class="col-12 py-4">
             <h3 class="text-success">{{'french' | translate }}</h3>

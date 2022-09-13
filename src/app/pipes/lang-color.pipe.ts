@@ -6,11 +6,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class LangColorPipe implements PipeTransform {
 
   transform(value: number): any {
-    console.log('value ', value);
     if (value === 0) {
-        return 'modal_close'
+        return 'btn-secondary'
     } else {
-        return 'modal_opened'
+        return 'btn-success'
     }
    return null;
  }

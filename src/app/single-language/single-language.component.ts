@@ -21,7 +21,6 @@ export class SingleLanguageComponent implements OnInit {
     this.childEvent.emit(value);
   }
   openModal(content:any, item:Language) {
-    console.log('item ', item);
     this.childEvent.emit(1);
     this.languageChoose = item.language
       this.levelSpoken = item.spoken_level
