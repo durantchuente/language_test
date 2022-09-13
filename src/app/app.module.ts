@@ -19,6 +19,7 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { LanguageState } from './store/state/language.state';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LangColorPipe } from './pipes/lang-color.pipe';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     LanguageComponent,
     SingleLanguageComponent,
     FormLanguageComponent,
-    DetailLanguageComponent
+    DetailLanguageComponent,
+    LangColorPipe
   ],
   imports: [
     BrowserModule,

@@ -22,17 +22,18 @@ export class SingleLanguageComponent implements OnInit {
   }
   openModal(content:any, item:Language) {
     console.log('item ', item);
+    this.childEvent.emit(1);
     this.languageChoose = item.language
       this.levelSpoken = item.spoken_level
       this.writtenLevel = item.written_level
       this.comprehensionLevel = item.comprehension_level
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.childEvent.emit(1);
+      
     });
   }
   closeModal(content:any) {
-    this.modalService.dismissAll()
     this.childEvent.emit(0);
+    this.modalService.dismissAll()
   }
   ngOnInit(): void {
     

@@ -14,7 +14,7 @@ import { LanguageState } from '../store/state/language.state';
 export class LanguageComponent implements OnInit {
   @Select(LanguageState.getLanguageList) languages!: Observable<Language[]>;
 
-  public modalObservalble!: number;
+  public modalObservalble: number = 0;
   constructor(
     public translate: TranslateService, private store: Store
   ) {
