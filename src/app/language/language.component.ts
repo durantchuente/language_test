@@ -15,6 +15,7 @@ export class LanguageComponent implements OnInit {
   @Select(LanguageState.getLanguageList) languages!: Observable<Language[]>;
 
   public modalObservalble: number = 0;
+  currentLanguage = 'fr';
   constructor(
     public translate: TranslateService, private store: Store
   ) {
@@ -26,6 +27,7 @@ export class LanguageComponent implements OnInit {
     this.store.dispatch(new GetLanguages());
   }
   switchLang(lang: string) {
+    this.currentLanguage = lang;
     this.translate.use(lang);
   }
   

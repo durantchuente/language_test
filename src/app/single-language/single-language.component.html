@@ -1,4 +1,4 @@
-<!-- <tr> -->
+<!-- <tr>
 <td>{{languageItem.language | translate}}</td>
 <td>{{languageItem.spoken_level | translate}}</td>
 <td>{{languageItem.written_level | translate}}</td>
@@ -7,8 +7,7 @@
     <button type="button" title="Modifier" class="btn btn-secondary m-1 btn-sm"><i class="fa fa-edit"></i></button>
     <button type="button" title="Detail" class="btn btn-info m-1 btn-sm" (click)="openModal(mymodal, languageItem)"><i class="fa fa-info-circle fs-6"></i></button>
     <button type="button" title="Supprimer" class="btn btn-danger m-1 btn-sm" (click)="deleteLanguage(languageItem)"><i class="fa fa-trash"></i></button>
-</td>
-<!-- </tr> -->
+</td> -->
 
 <ng-template #mymodal let-modal>
     <div class="modal-header">
@@ -31,3 +30,28 @@
         </div>
     </div>
 </ng-template>
+<div class="card">
+    <div class="card-body">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-1 col-md-2 col-sm-12">
+                    {{languageItem.language | translate}}
+                </div>
+                <div class="col-lg-3 col-md-5 col-sm-12">
+                    <span class="fw-bold">{{'spoken_level' | translate }}: </span> {{languageItem.spoken_level | translate}}
+                </div>
+                <div class="col-lg-3 col-md-5 col-sm-12">
+                    <span class="fw-bold">{{'written_level' | translate }}: </span> {{languageItem.written_level | translate}}
+                </div>
+                <div class="col-lg-3 col-md-8 col-sm-12">
+                    <span class="fw-bold">{{'comprehension_level' | translate }}: </span> {{languageItem.comprehension_level | translate}}
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-12">
+                    <button type="button" title="Modifier" class="btn btn-secondary m-1 btn-sm"><i class="fa fa-edit"></i></button>
+                    <button type="button" title="Detail" class="btn btn-info m-1 btn-sm" (click)="openModal(mymodal, languageItem)"><i class="fa fa-info-circle fs-6"></i></button>
+                    <button type="button" title="Supprimer" class="btn btn-danger m-1 btn-sm" (click)="deleteLanguage(languageItem)"><i class="fa fa-trash"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

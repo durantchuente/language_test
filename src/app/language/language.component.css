@@ -4,10 +4,19 @@
 
 .contentCardNumberLang {
     max-width: 18rem;
-    bottom: 0;
-    position: absolute;
+    /* bottom: 0;
+    position: absolute; */
 }
 
 .selectLanguage {
     width: 205px;
+}
+
+@media (max-width: 575.98px) {
+    .selectLanguage {
+        width: 100%;
+    }
+    .btnModalCheck {
+        right: 13px !important;
+    }
 }

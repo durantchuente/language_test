@@ -6,7 +6,7 @@
         <form class="col-12 px-0" [formGroup]="formLanguage" (ngSubmit)="onSubmit()">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-md-6 col-sm-12">
                         <div class="mb-3">
                             <label for="langue" class="form-label">{{'choose_language' | translate }}</label>
                             <select required formControlName="language" class="form-select" id="langue" aria-label="Default select example">
@@ -20,7 +20,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6 col-sm-12">
                         <div class="mb-3">
                             <label for="level_read" class="form-label">{{'spoken_level' | translate }}</label>
                             <select required formControlName="spoken_level" class="form-select" id="level_read" aria-label="Default select example">
@@ -35,7 +35,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6 col-sm-12">
                         <div class="mb-3">
                             <label for="level_write" class="form-label">{{'written_level' | translate }}</label>
                             <select required formControlName="written_level" class="form-select" id="level_write" aria-label="Default select example">
@@ -50,7 +50,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6 col-sm-12">
                         <div class="mb-3">
                             <label for="level_understanding" class="form-label">{{'comprehension_level' | translate }}</label>
                             <select required formControlName="comprehension_level" class="form-select" id="level_understanding" aria-label="Default select example">
