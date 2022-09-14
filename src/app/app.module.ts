@@ -20,6 +20,7 @@ import { LanguageState } from './store/state/language.state';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LangColorPipe } from './pipes/lang-color.pipe';
+import { ModalMessageComponent } from './modal-message/modal-message.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { LangColorPipe } from './pipes/lang-color.pipe';
     SingleLanguageComponent,
     FormLanguageComponent,
     DetailLanguageComponent,
-    LangColorPipe
+    LangColorPipe,
+    ModalMessageComponent
   ],
   imports: [
     BrowserModule,

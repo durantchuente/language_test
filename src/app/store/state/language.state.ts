@@ -8,13 +8,15 @@ import { Injectable } from '@angular/core';
 export class LanguageStateModel {
     languages!: Language[];
     selectedLanguage!: Language | null;
+    message!: string | null;
 }
 
 @State<LanguageStateModel>({
     name: 'languages',
     defaults: {
         languages: [],
-        selectedLanguage: null
+        selectedLanguage: null,
+        message: null
     }
 })
 
@@ -47,12 +49,19 @@ export class LanguageState {
 
     @Action(AddLanguage)
     addLanguage({getState, patchState}: StateContext<LanguageStateModel>, {payload}: AddLanguage) {
-        return this.languageService.createLanguage(payload).pipe(tap((result) => {
-            const state = getState();
-            patchState({
-                languages: [...state.languages, result]
+        const state = getState();
+        if (state.languages.find(x => x.language === payload.language)) {
+            return patchState({
+                message: "this_language_has_already_been_added"
             });
-        }));
+        } else {
+            return this.languageService.createLanguage(payload).pipe(tap((result) => {
+                patchState({
+                    languages: [...state.languages, result],
+                    message: null
+                });
+            }));
+        }
     }
 
     @Action(UpdateLanguage)

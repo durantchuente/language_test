@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngxs/store';
 import { Language } from '../interfaces/language.model';
+import { ModalMessageComponent } from '../modal-message/modal-message.component';
 import { AddLanguage, GetLanguages } from '../store/actions/language.action';
 
 
@@ -11,6 +13,7 @@ import { AddLanguage, GetLanguages } from '../store/actions/language.action';
   styleUrls: ['./form-language.component.css']
 })
 export class FormLanguageComponent implements OnInit {
+  //@Input() languageElementEdit!: Language;
   submitted = false
   formLanguage = this.formBuilder.group({
     language: ['', Validators.required ],
@@ -18,8 +21,9 @@ export class FormLanguageComponent implements OnInit {
     written_level: ['', Validators.required ],
     comprehension_level: ['', Validators.required ]
  });
+ private modalRef!: NgbModalRef
   constructor(
-    private formBuilder: FormBuilder, private store: Store
+    private formBuilder: FormBuilder, private store: Store, private modalService: NgbModal
   ) {
     
   }
@@ -30,7 +34,6 @@ export class FormLanguageComponent implements OnInit {
   onSubmit(){
     this.submitted = true
     if (this.formLanguage.valid) {
-      console.log('value ', this.formLanguage.getRawValue());
       const newLang: Language = {
         "language": this.formLanguage.value.language || '',
         'spoken_level': this.formLanguage.value.spoken_level  || '',
@@ -40,12 +43,16 @@ export class FormLanguageComponent implements OnInit {
       this.addLanguage(newLang)
       this.formLanguage.reset()
       this.submitted = false
-    } else {
-      
     }
   }
   addLanguage(payload: Language) {
-    this.store.dispatch(new AddLanguage(payload));
-    this.store.dispatch(new GetLanguages());
+    this.store.dispatch(new AddLanguage(payload)).subscribe(res => {
+      if (res?.languages?.message) {
+        this.modalRef = this.modalService.open(ModalMessageComponent)
+        this.modalRef.componentInstance.message = res?.languages?.message;
+      } else {
+        this.store.dispatch(new GetLanguages());
+      }
+    })
   }
 }

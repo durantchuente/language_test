@@ -13,7 +13,7 @@
             <button type="button" class="btnModalCheck btn {{modalObservalble | langColor}} position-absolute end-0">{{(modalObservalble == 0 ? 'modal_close' : 'modal_opened') | translate }}</button>
         </div>
         <div class="col-md-12 pt-5">
-            <h3 class="text-success py-3">{{currentLanguage | translate }}</h3>
+            <h3 class="text-success py-3">{{translate.currentLang | translate }}</h3>
         </div>
         <div class="col-md-9 col-sm-12">
             <lang-form></lang-form>
@@ -32,10 +32,9 @@
                     <div class="col-12">
                         <h4 class="pt-4">{{'list_of_languages' | translate }}</h4>
                     </div>
-                    <lang-single class="col-sm-12 my-2" *ngFor="let language of languages | async" [languageItem]="language" (childEvent)="modalObservalble=$event"></lang-single>
+                    <lang-single (editLanguageEmitter)="receiveElementEdit()" class="col-sm-12 my-2" *ngFor="let language of languages | async" [languageItem]="language" (childEvent)="modalObservalble=$event"></lang-single>
                 </div>
             </div>
         </div>
-
     </div>
 </div>

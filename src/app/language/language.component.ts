@@ -3,7 +3,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { Language } from '../interfaces/language.model';
-import { LanguageService } from '../services/language.service';
 import { DeleteLanguage, GetLanguages, SetSelectedLanguage } from '../store/actions/language.action';
 import { LanguageState } from '../store/state/language.state';
 @Component({
@@ -15,19 +14,19 @@ export class LanguageComponent implements OnInit {
   @Select(LanguageState.getLanguageList) languages!: Observable<Language[]>;
 
   public modalObservalble: number = 0;
-  currentLanguage = 'fr';
   constructor(
     public translate: TranslateService, private store: Store
   ) {
     translate.addLangs(['fr', 'en', 'nl']);
     translate.setDefaultLang('fr');
   }
-
+  receiveElementEdit($event?: Language) {  
+    console.log('$event ', $event)
+  }
   ngOnInit(): void {
     this.store.dispatch(new GetLanguages());
   }
   switchLang(lang: string) {
-    this.currentLanguage = lang;
     this.translate.use(lang);
   }
   
