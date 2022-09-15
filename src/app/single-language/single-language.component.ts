@@ -22,7 +22,7 @@ export class SingleLanguageComponent implements OnInit {
   openModal(item:Language): Promise<boolean> {
     return new Promise<boolean>(resolve => {
       this.stateModalEvent.emit(1);
-      this.modalRef = this.modalService.open(DetailLanguageComponent)
+      this.modalRef = this.modalService.open(DetailLanguageComponent, { centered: true })
       this.modalRef.componentInstance.languageDetail = item;
       this.modalRef.componentInstance.stateModalEvent = this.stateModalEvent;
       this.modalRef.result.then(() => {}, () => { this.stateModalEvent.emit(0)})
@@ -32,8 +32,7 @@ export class SingleLanguageComponent implements OnInit {
     this.store.dispatch(new SelectedLanguage(id));
   }
   openModalDelete(content: any){
-    const modalRef = this.modalService.open(content)
-    
+    const modalRef = this.modalService.open(content, { centered: true })
   }
   deleteLanguage(item: Language){
     if (item?.id) {

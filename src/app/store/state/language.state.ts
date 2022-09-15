@@ -80,7 +80,7 @@ export class LanguageState {
     @Action(UpdateLanguage)
     updateLanguage({getState, setState, patchState}: StateContext<LanguageStateModel>, {payload}: UpdateLanguage) {
         const state = getState();
-        if (state.languages.find(x => x.language === payload.language)) {
+        if (state.languages.find(x => x.language === payload.language && x.id !== payload.id)) {
             return patchState({
                 message: "this_language_has_already_been_added",
                 loader: false
