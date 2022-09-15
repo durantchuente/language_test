@@ -1,6 +1,6 @@
 import {State, Action, StateContext, Selector} from '@ngxs/store';
 import {Language} from '../../interfaces/language.model';
-import {AddLanguage, DeleteLanguage, GetLanguages, SetSelectedLanguage, UpdateLanguage} from '../actions/language.action';
+import {AddLanguage, DeleteLanguage, GetLanguages, SelectedLanguage, UpdateLanguage} from '../actions/language.action';
 import {LanguageService} from '../../services/language.service';
 import {tap} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
@@ -9,6 +9,7 @@ export class LanguageStateModel {
     languages!: Language[];
     selectedLanguage!: Language | null;
     message!: string | null;
+    loader!: boolean;
 }
 
 @State<LanguageStateModel>({
@@ -16,7 +17,8 @@ export class LanguageStateModel {
     defaults: {
         languages: [],
         selectedLanguage: null,
-        message: null
+        message: null,
+        loader: true
     }
 })
 
@@ -32,6 +34,11 @@ export class LanguageState {
     }
 
     @Selector()
+    static getLoader(state: LanguageStateModel) {
+        return state.loader;
+    }
+
+    @Selector()
     static getSelectedLanguage(state: LanguageStateModel) {
         return state.selectedLanguage;
     }
@@ -43,6 +50,9 @@ export class LanguageState {
             setState({
                 ...state,
                 languages: result,
+                message: null,
+                selectedLanguage: null,
+                loader: false
             });
         }));
     }
@@ -52,30 +62,44 @@ export class LanguageState {
         const state = getState();
         if (state.languages.find(x => x.language === payload.language)) {
             return patchState({
-                message: "this_language_has_already_been_added"
+                message: "this_language_has_already_been_added",
+                loader: false
             });
         } else {
             return this.languageService.createLanguage(payload).pipe(tap((result) => {
                 patchState({
                     languages: [...state.languages, result],
-                    message: null
+                    message: null,
+                    selectedLanguage: null,
+                    loader: true
                 });
             }));
         }
     }
 
     @Action(UpdateLanguage)
-    updateLanguage({getState, setState}: StateContext<LanguageStateModel>, {payload}: UpdateLanguage) {
-        return this.languageService.editLanguage(payload).pipe(tap((result) => {
-            const state = getState();
-            const languageList = [...state.languages];
-            const languageIndex = languageList.findIndex(item => item.id === payload.id);
-            languageList[languageIndex] = result;
-            setState({
-                ...state,
-                languages: languageList,
+    updateLanguage({getState, setState, patchState}: StateContext<LanguageStateModel>, {payload}: UpdateLanguage) {
+        const state = getState();
+        if (state.languages.find(x => x.language === payload.language)) {
+            return patchState({
+                message: "this_language_has_already_been_added",
+                loader: false
             });
-        }));
+        } else {
+            return this.languageService.editLanguage(payload).pipe(tap((result) => {
+                const languageList = [...state.languages];
+                const languageIndex = languageList.findIndex(item => item.id === payload.id);
+                languageList[languageIndex] = payload;
+                setState({
+                    ...state,
+                    languages: languageList,
+                    message: null,
+                    selectedLanguage: null,
+                    loader: true
+                });
+            }));
+        }
+        
     }
 
 
@@ -87,16 +111,22 @@ export class LanguageState {
             setState({
                 ...state,
                 languages: filteredArray,
+                message: null,
+                selectedLanguage: null,
+                loader: true
             });
         }));
     }
 
-    @Action(SetSelectedLanguage)
-    setSelectedLanguageId({getState, setState}: StateContext<LanguageStateModel>, {payload}: SetSelectedLanguage) {
+    @Action(SelectedLanguage)
+    selectedLanguageId({getState, setState}: StateContext<LanguageStateModel>, {id}: SelectedLanguage) {
         const state = getState();
+        const language = state.languages.find(x => x.id == id)
         setState({
             ...state,
-            selectedLanguage: payload
+            selectedLanguage: language ?? null,
+            loader: false
         });
+        
     }
 }

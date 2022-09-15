@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, Input, OnInit } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Language } from '../interfaces/language.model';
 
 @Component({
@@ -9,14 +9,9 @@ import { Language } from '../interfaces/language.model';
 })
 export class DetailLanguageComponent implements OnInit {
   @Input() languageDetail!: Language;
-  @Input() childEvent: any;
-  constructor(private modalService: NgbModal) { }
+  @Input() stateModalEvent: any;
+  constructor(public modalService: NgbActiveModal) { }
 
   ngOnInit(): void {
-  }
-
-  async closeModal(): Promise<void> {
-    this.childEvent.emit(0);
-    this.modalService.dismissAll()
   }
 }

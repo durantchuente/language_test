@@ -14,7 +14,7 @@ export class GetLanguages {
 export class UpdateLanguage {
     static readonly type = '[Language] Update';
 
-    constructor(public payload: Language, public id: number) {
+    constructor(public payload: Language) {
     }
 }
 
@@ -25,9 +25,9 @@ export class DeleteLanguage {
     }
 }
 
-export class SetSelectedLanguage {
-    static readonly type = '[Language] Set';
+export class SelectedLanguage {
+    static readonly type = '[Language] Selected';
 
-    constructor(public payload: Language) {
+    constructor(public id?: string | null) {
     }
 }

@@ -22,7 +22,7 @@
             <div class="card text-white bg-dark mb-3 h-75 w-100 contentCardNumberLang">
                 <div class="card-body">
                     <h5 class="card-title">{{'number_of_languages' | translate }}</h5>
-                    <p class="card-text text-center py-4">{{(languages | async)?.length}}</p>
+                    <p class="card-text text-center py-4">{{(languages$ | async)?.length}}</p>
                 </div>
             </div>
         </div>
@@ -32,7 +32,12 @@
                     <div class="col-12">
                         <h4 class="pt-4">{{'list_of_languages' | translate }}</h4>
                     </div>
-                    <lang-single (editLanguageEmitter)="receiveElementEdit()" class="col-sm-12 my-2" *ngFor="let language of languages | async" [languageItem]="language" (childEvent)="modalObservalble=$event"></lang-single>
+                    <div class="col-12 text-center py-5" *ngIf="loader$ | async">
+                        <div class="spinner-border text-secondary" style="width: 5rem; height: 5rem;" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                    <lang-single class="col-sm-12 my-2" *ngFor="let language of languages$ | async" [languageItem]="language" (stateModalEvent)="modalObservalble=$event"></lang-single>
                 </div>
             </div>
         </div>

@@ -67,7 +67,7 @@
                     </div>
                     <div class="col-12">
                         <button type="submit" class="btn btn-primary">{{'save' | translate }}</button>
-                        <button type="reset" class="btn btn-secondary m-2">{{'cancel' | translate }}</button>
+                        <button *ngIf="languageElementEdit | async" (click)="resetForm()" class="btn btn-secondary m-2">{{'cancel' | translate }}</button>
                     </div>
                 </div>
             </div>
