@@ -20,4 +20,16 @@ describe('LanguageComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  
+  it('language observable defined', () => {
+    expect(component.languages$).toBeDefined();
+  });
+  
+  it('loader observable defined', () => {
+    expect(component.loader$).toBeDefined();
+  });
+  
+  it('modal observable defined', () => {
+    expect(component.modalObservalble).toBeTruthy();
+  });
 });

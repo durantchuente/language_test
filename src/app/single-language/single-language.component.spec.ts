@@ -11,7 +11,7 @@ describe('SingleLanguageComponent', () => {
       declarations: [ SingleLanguageComponent ]
     })
     .compileComponents();
-
+    
     fixture = TestBed.createComponent(SingleLanguageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -19,5 +19,13 @@ describe('SingleLanguageComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+  
+  it('state modal defined', () => {
+    expect(component.stateModalEvent).toBeDefined();
+  });
+  
+  it('language item defined', () => {
+    expect(component.languageItem).toBeDefined();
   });
 });
