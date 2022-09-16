@@ -15,9 +15,9 @@
                     <span class="fw-bold">{{'comprehension_level' | translate }}: </span> {{languageItem.comprehension_level | translate}}
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-12">
-                    <button type="button" title="Modifier" class="btn btn-secondary m-1 btn-sm" (click)="editLanguage(languageItem.id)"><i class="fa fa-edit"></i></button>
-                    <button type="button" title="Detail" class="btn btn-info m-1 btn-sm" (click)="openModal(languageItem)"><i class="fa fa-info-circle fs-6"></i></button>
-                    <button type="button" title="Supprimer" class="btn btn-danger m-1 btn-sm" (click)="openModalDelete(content)"><i class="fa fa-trash"></i></button>
+                    <button type="button" title="{{'edit' | translate }}" class="btn btn-secondary m-1 btn-sm" (click)="editLanguage(languageItem.id)"><i class="fa fa-edit"></i></button>
+                    <button type="button" title="{{'detail' | translate }}" class="btn btn-info m-1 btn-sm" (click)="openModal(languageItem)"><i class="fa fa-info-circle fs-6"></i></button>
+                    <button type="button" title="{{'delete' | translate }}" class="btn btn-danger m-1 btn-sm" (click)="openModalDelete(content)"><i class="fa fa-trash"></i></button>
                 </div>
             </div>
         </div>
